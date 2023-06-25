@@ -1,14 +1,14 @@
 import React from "react";
 import { AuthProvider } from "./context/AuthContext";
 import "./App.css";
-import UserAuth from "./components/userAuth/UserAuth";
+import Bank from "./pages/bank/Bank";
 
 function App() {
   return (
     <AuthProvider>
       <div className="App">
-        <h2>useContext</h2>
-        <UserAuth />
+        <h2>useReducer</h2>
+        <Bank />
       </div>
     </AuthProvider>
   );
