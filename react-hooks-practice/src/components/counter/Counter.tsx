@@ -1,47 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import classes from "./Counter.module.scss";
 
-const Counter: React.VFC = () => {
-  const [count1, setCount1] = useState(0);
-  const [count2, setCount2] = useState(0);
+type Props = {
+  counterTitle: string;
+  count: number;
+};
 
-  useEffect(() => {
-    console.log("マウント時とcount1が変化した時にuseEffectが発火");
-    const countUp = setInterval(() => {
-      setCount1((prevCount) => prevCount + 1);
-      console.log("countUp");
-    }, 1000);
-    return () => {
-      clearInterval(countUp);
-      console.log("unmount");
-    };
-  }, []);
+const Counter: React.VFC<Props> = React.memo(({ counterTitle, count }) => {
+  console.log(`Counter:${counterTitle}`);
 
   return (
     <div className={classes.root}>
-      <div className={classes.buttonWrapper}>
-        <span className={classes.buttonText}>カウント1</span>
-        <button
-          onClick={() => {
-            setCount1((prevCount) => prevCount + 1);
-          }}
-        >
-          {count1}
-        </button>
-      </div>
-
-      <div className={classes.buttonWrapper}>
-        <span className={classes.buttonText}>カウント2</span>
-        <button
-          onClick={() => {
-            setCount2((prevCount) => prevCount + 1);
-          }}
-        >
-          {count2}
-        </button>
-      </div>
+      {counterTitle}:<span className={classes.count}>{count}人</span>
     </div>
   );
-};
+});
 
 export default Counter;
